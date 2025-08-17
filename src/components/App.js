@@ -1,8 +1,9 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import './../styles/App.css';
 
 const App = () => {
+  const [count,setCount] = useState(0);
     const cityList = [{ name: 'Goa', country: 'India' },
     { name: 'Amsterdam', country: 'Netherlands' },
     { name: 'New York', country: 'USA' },
@@ -31,11 +32,23 @@ const App = () => {
     { name: 'Mussoorie', country: 'India' },
     { name: 'Mount Abu', country: 'India' },
     { name: 'Tirupati', country: 'India' },
-    ]
-    
+    ];
+
+
+
+    const indianCities = cityList.filter((city)=>{
+      return city.country=='India';
+    });
+   
+
   return (
     <div id="main">
-               {/* Do not remove the main div */}
+       <ol>
+           {indianCities.map((city,index)=>(
+             <li key={`location${index+1}`}>{city.name}</li>
+            ))}
+       </ol>
+
     </div>
   )
 }
